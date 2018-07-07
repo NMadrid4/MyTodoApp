@@ -15,11 +15,10 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var usernameTexField: UITextField!
     @IBOutlet weak var passwordTexField: UITextField!
     @IBOutlet weak var signinButton: UIButton!
+    @IBOutlet weak var signupButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         
     }
 
@@ -33,6 +32,8 @@ class SignInViewController: UIViewController {
         performSegue(withIdentifier: "goToHome", sender: nil)
     }
     
+    @IBAction func signupAction(_ sender: UIButton) {
+    }
     
     
     //se ejecuta al construir todos los contrains
