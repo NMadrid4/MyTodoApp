@@ -29,7 +29,9 @@ class SignInViewController: UIViewController {
     
     @IBAction func signinAction(_ sender: UIButton) {
         
-        performSegue(withIdentifier: "goToHome", sender: nil)
+        let tabBarController = UIStoryboard(name: "Home", bundle: nil ).instantiateViewController(withIdentifier: "tabBarController")
+        
+        self.present(tabBarController, animated: true, completion: nil)
     }
     
     @IBAction func signupAction(_ sender: UIButton) {

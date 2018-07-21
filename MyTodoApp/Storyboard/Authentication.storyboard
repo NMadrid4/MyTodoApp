@@ -107,7 +107,6 @@
                         <outlet property="signinButton" destination="aDp-ay-7sD" id="2Yc-WT-Ydt"/>
                         <outlet property="signupButton" destination="VCo-Ic-rha" id="wxP-Mb-BOt"/>
                         <outlet property="usernameTexField" destination="Dpy-aa-lcQ" id="Y2k-xU-eMC"/>
-                        <segue destination="Krx-0D-rhv" kind="show" identifier="goToHome" id="At3-sl-zVe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="riM-Gi-NBi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -178,7 +177,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="21O-1k-xhf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1444" y="-211"/>
+            <point key="canvasLocation" x="1470" y="-233"/>
         </scene>
         <!--Home-->
         <scene sceneID="0si-iw-Zhg">

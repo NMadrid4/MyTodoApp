@@ -13,6 +13,11 @@
 		AC14D17620E81702002306B5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC14D17420E81702002306B5 /* LaunchScreen.storyboard */; };
 		AC14D18320E81ACA002306B5 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC14D18220E81ACA002306B5 /* SignInViewController.swift */; };
 		AC14D18720E82A13002306B5 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC14D18620E82A13002306B5 /* Home.storyboard */; };
+		AC51C52F2103D9130047C4C5 /* ToDos.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC51C52E2103D9130047C4C5 /* ToDos.storyboard */; };
+		AC51C5312103DA490047C4C5 /* Notes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC51C5302103DA490047C4C5 /* Notes.storyboard */; };
+		AC51C5342103DBD60047C4C5 /* TodoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC51C5332103DBD60047C4C5 /* TodoDetailViewController.swift */; };
+		AC51C5372103DC340047C4C5 /* NotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC51C5362103DC340047C4C5 /* NotesViewController.swift */; };
+		AC51C5392103DC4B0047C4C5 /* NotesDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC51C5382103DC4B0047C4C5 /* NotesDetailViewController.swift */; };
 		AC5F27B220F1558F00ABD813 /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC5F27B120F1558F00ABD813 /* Authentication.storyboard */; };
 		AC5F27B420F15C4E00ABD813 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5F27B320F15C4E00ABD813 /* SignUpViewController.swift */; };
 		AC5F27B820F1634400ABD813 /* TodosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5F27B720F1634400ABD813 /* TodosViewController.swift */; };
@@ -31,6 +36,11 @@
 		AC14D17720E81702002306B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AC14D18220E81ACA002306B5 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		AC14D18620E82A13002306B5 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
+		AC51C52E2103D9130047C4C5 /* ToDos.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ToDos.storyboard; sourceTree = "<group>"; };
+		AC51C5302103DA490047C4C5 /* Notes.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Notes.storyboard; sourceTree = "<group>"; };
+		AC51C5332103DBD60047C4C5 /* TodoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoDetailViewController.swift; sourceTree = "<group>"; };
+		AC51C5362103DC340047C4C5 /* NotesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesViewController.swift; sourceTree = "<group>"; };
+		AC51C5382103DC4B0047C4C5 /* NotesDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesDetailViewController.swift; sourceTree = "<group>"; };
 		AC5F27B120F1558F00ABD813 /* Authentication.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
 		AC5F27B320F15C4E00ABD813 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		AC5F27B720F1634400ABD813 /* TodosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosViewController.swift; sourceTree = "<group>"; };
@@ -88,6 +98,8 @@
 			children = (
 				AC14D18620E82A13002306B5 /* Home.storyboard */,
 				AC5F27B120F1558F00ABD813 /* Authentication.storyboard */,
+				AC51C52E2103D9130047C4C5 /* ToDos.storyboard */,
+				AC51C5302103DA490047C4C5 /* Notes.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -95,10 +107,30 @@
 		AC14D17E20E81979002306B5 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				AC51C5352103DC1D0047C4C5 /* Notes */,
+				AC51C5322103DB990047C4C5 /* ToDos */,
 				AC5F27B620F1632400ABD813 /* Home */,
 				AC5F27B520F1630900ABD813 /* Authentication */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		AC51C5322103DB990047C4C5 /* ToDos */ = {
+			isa = PBXGroup;
+			children = (
+				AC5F27B720F1634400ABD813 /* TodosViewController.swift */,
+				AC51C5332103DBD60047C4C5 /* TodoDetailViewController.swift */,
+			);
+			path = ToDos;
+			sourceTree = "<group>";
+		};
+		AC51C5352103DC1D0047C4C5 /* Notes */ = {
+			isa = PBXGroup;
+			children = (
+				AC51C5362103DC340047C4C5 /* NotesViewController.swift */,
+				AC51C5382103DC4B0047C4C5 /* NotesDetailViewController.swift */,
+			);
+			path = Notes;
 			sourceTree = "<group>";
 		};
 		AC5F27B520F1630900ABD813 /* Authentication */ = {
@@ -113,7 +145,6 @@
 		AC5F27B620F1632400ABD813 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				AC5F27B720F1634400ABD813 /* TodosViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -203,9 +234,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC14D17620E81702002306B5 /* LaunchScreen.storyboard in Resources */,
+				AC51C5312103DA490047C4C5 /* Notes.storyboard in Resources */,
 				AC14D17320E81702002306B5 /* Assets.xcassets in Resources */,
 				AC14D18720E82A13002306B5 /* Home.storyboard in Resources */,
 				AC5F27C520F1677900ABD813 /* TodosTableViewCell.xib in Resources */,
+				AC51C52F2103D9130047C4C5 /* ToDos.storyboard in Resources */,
 				AC5F27B220F1558F00ABD813 /* Authentication.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -219,12 +252,15 @@
 			files = (
 				AC14D17120E81700002306B5 /* MyTodoApp.xcdatamodeld in Sources */,
 				AC5F27BB20F1654B00ABD813 /* Todo.swift in Sources */,
+				AC51C5392103DC4B0047C4C5 /* NotesDetailViewController.swift in Sources */,
 				AC14D16920E81700002306B5 /* AppDelegate.swift in Sources */,
 				AC5F27B420F15C4E00ABD813 /* SignUpViewController.swift in Sources */,
 				AC5F27B820F1634400ABD813 /* TodosViewController.swift in Sources */,
 				AC5F27BD20F165D200ABD813 /* Task.swift in Sources */,
+				AC51C5372103DC340047C4C5 /* NotesViewController.swift in Sources */,
 				AC14D18320E81ACA002306B5 /* SignInViewController.swift in Sources */,
 				AC5F27C420F1677900ABD813 /* TodosTableViewCell.swift in Sources */,
+				AC51C5342103DBD60047C4C5 /* TodoDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
