@@ -18,9 +18,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="r8W-vJ-F62">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="r8W-vJ-F62">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="q1J-xX-oYb" id="Apf-aJ-hea"/>
+                                    <outlet property="delegate" destination="q1J-xX-oYb" id="HkQ-it-Woo"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -35,7 +39,7 @@
                     <navigationItem key="navigationItem" title="ToDos" id="Tl1-Yp-uHY">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="RvN-wW-DIv">
                             <connections>
-                                <segue destination="TJg-zL-IBG" kind="show" id="3v2-CB-YKk"/>
+                                <segue destination="TJg-zL-IBG" kind="show" identifier="todoDetail" id="3v2-CB-YKk"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -50,7 +54,7 @@
         <!--Todo Detail View Controller-->
         <scene sceneID="1rw-xw-oJZ">
             <objects>
-                <viewController id="TJg-zL-IBG" customClass="TodoDetailViewController" customModule="MyTodoApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="todoDetailVC" id="TJg-zL-IBG" customClass="TodoDetailViewController" customModule="MyTodoApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GEo-Xi-Dm4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -163,6 +167,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="tT4-UJ-4iu"/>
                     </view>
+                    <connections>
+                        <outlet property="descriptionTextView" destination="Fie-lb-UuM" id="Pin-lA-EsY"/>
+                        <outlet property="titleTextField" destination="fbd-92-GM6" id="lLc-YX-MEm"/>
+                        <outlet property="todoActionButton" destination="68P-o1-rR2" id="mbP-pR-r31"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o6F-GP-Uzs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

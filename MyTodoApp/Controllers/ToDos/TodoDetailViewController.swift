@@ -7,29 +7,50 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class TodoDetailViewController: UIViewController {
 
+    @IBOutlet weak var titleTextField: UITextField!
+    @IBOutlet weak var descriptionTextView: UITextView!
+    @IBOutlet weak var todoActionButton: UIButton!
+    
+    var todo: Todo?
+    var isExisted = false
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
+        if let todo = todo {
+            titleTextField.text = todo.title
+            descriptionTextView.text = todo.description
+        }
+        if !isExisted {
+            todoActionButton.setTitle("Create", for: .normal)
+        }else{
+            todoActionButton.setTitle("save Changes", for: .normal)
+            todoActionButton.addTarget(self, action: #selector(saveTodoChanges), for: .touchUpInside)
+        }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @objc func saveTodoChanges() {
+        if let todo = self.todo {
+            todo.title = titleTextField.text!
+            todo.description = descriptionTextView.text!
+            saveTodoChangeWith(todo: todo)
+            
+        }
     }
-    */
+    
+    func saveTodoChangeWith(todo: Todo){
+        let params = ["title": todo.title, "description": todo.description]
+        let url = String(format: "\(TodoAPI.baseURL)\(TodoAPI.editMyTodoUrl)", "\(todo.id)")
+        Alamofire.request(url, method: .put, parameters: params).responseJSON{ response in
+            self.navigationController?.popViewController(animated: true)
+            
+        }
+        
+    }
 
 }

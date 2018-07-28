@@ -18,7 +18,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GUA-Wc-H2T" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-981" y="434"/>
+            <point key="canvasLocation" x="-957" y="296"/>
         </scene>
         <!--Notes-->
         <scene sceneID="67B-2B-gZR">
@@ -28,7 +28,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bq9-4n-LKG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-371" y="448"/>
+            <point key="canvasLocation" x="-461" y="296"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="CXT-TF-6w8">
@@ -40,9 +40,9 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="eFa-3x-fdj" kind="relationship" relationship="viewControllers" id="FyY-2b-6S1"/>
-                        <segue destination="ajH-43-j4A" kind="relationship" relationship="viewControllers" id="tNC-1u-Xbo"/>
                         <segue destination="wcK-96-gd6" kind="relationship" relationship="viewControllers" id="21u-HE-xC8"/>
+                        <segue destination="ajH-43-j4A" kind="relationship" relationship="viewControllers" id="tNC-1u-Xbo"/>
+                        <segue destination="eFa-3x-fdj" kind="relationship" relationship="viewControllers" id="FyY-2b-6S1"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gs4-hF-Xbi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -52,7 +52,7 @@
         <!--About-->
         <scene sceneID="2r4-9Y-4h8">
             <objects>
-                <viewController id="eFa-3x-fdj" sceneMemberID="viewController">
+                <viewController id="eFa-3x-fdj" customClass="AboutViewController" customModule="MyTodoApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hHv-SY-cLT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -63,7 +63,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gAT-g0-rWy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="575" y="649"/>
+            <point key="canvasLocation" x="103" y="612"/>
         </scene>
     </scenes>
 </document>
