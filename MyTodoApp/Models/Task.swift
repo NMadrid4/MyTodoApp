@@ -23,7 +23,7 @@ class Task {
         return Task(title: json["title"].stringValue, id: json["id"].intValue)
     }
     
-    func from(jsonArray: [JSON]) -> [Task] {
+    static func from(jsonArray: [JSON]) -> [Task] {
         var resultArray: [Task] = []
         for jsonTask in jsonArray {
             resultArray.append(Task.from(json: jsonTask))

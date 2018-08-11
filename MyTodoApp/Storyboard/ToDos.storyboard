@@ -77,13 +77,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tasks" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="twY-C6-zd2">
-                                <rect key="frame" x="35" y="364" width="44" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Allow Task" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="twY-C6-zd2">
+                                <rect key="frame" x="35" y="364" width="81" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sVh-8r-gjU">
+                            <textField hidden="YES" opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sVh-8r-gjU">
                                 <rect key="frame" x="35" y="415" width="232" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="232" id="2XF-f7-1b6"/>
@@ -92,13 +92,16 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gfG-0a-d2e">
+                            <button hidden="YES" opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gfG-0a-d2e">
                                 <rect key="frame" x="282" y="410" width="85" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="2ny-py-Jfn"/>
                                     <constraint firstAttribute="height" constant="30" id="ccR-XY-fuQ"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" image="ic_add"/>
+                                <connections>
+                                    <action selector="addNewTaskAction:" destination="TJg-zL-IBG" eventType="touchUpInside" id="wak-4i-Ijg"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sdI-Cd-ilt">
                                 <rect key="frame" x="35" y="94" width="34" height="21"/>
@@ -126,15 +129,31 @@
                                 </constraints>
                                 <state key="normal" title="Save"/>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9wD-Yi-mbS">
+                            <tableView hidden="YES" clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9wD-Yi-mbS">
                                 <rect key="frame" x="35" y="455" width="305" height="162"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="Bhf-U3-CdD">
+                                        <rect key="frame" x="0.0" y="28" width="305" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Bhf-U3-CdD" id="m5f-9H-g4u">
+                                            <rect key="frame" x="0.0" y="0.0" width="305" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="TJg-zL-IBG" id="se6-lZ-829"/>
+                                </connections>
                             </tableView>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O7F-Zq-xMm">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="O7F-Zq-xMm">
                                 <rect key="frame" x="291" y="354" width="51" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="31" id="qb6-ze-Jqm"/>
                                 </constraints>
+                                <connections>
+                                    <action selector="allowTaskAction:" destination="TJg-zL-IBG" eventType="valueChanged" id="lDi-EW-tEL"/>
+                                </connections>
                             </switch>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -168,7 +187,11 @@
                         <viewLayoutGuide key="safeArea" id="tT4-UJ-4iu"/>
                     </view>
                     <connections>
+                        <outlet property="addNewTaskButoon" destination="gfG-0a-d2e" id="Dha-vq-bX4"/>
+                        <outlet property="allowTaskSwitch" destination="O7F-Zq-xMm" id="2jl-kU-ITk"/>
                         <outlet property="descriptionTextView" destination="Fie-lb-UuM" id="Pin-lA-EsY"/>
+                        <outlet property="taskTableView" destination="9wD-Yi-mbS" id="DLH-C9-Y5d"/>
+                        <outlet property="taskTextField" destination="sVh-8r-gjU" id="1rK-gi-r8r"/>
                         <outlet property="titleTextField" destination="fbd-92-GM6" id="lLc-YX-MEm"/>
                         <outlet property="todoActionButton" destination="68P-o1-rR2" id="mbP-pR-r31"/>
                     </connections>
@@ -197,4 +220,7 @@
             <point key="canvasLocation" x="-1092" y="669.71514242878561"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ic_add" width="32" height="32"/>
+    </resources>
 </document>
