@@ -123,17 +123,17 @@ class TodoDetailViewController: UIViewController {
         
         TodoEndPoint.createTask(Title: taskTextField.text!, fromTodo: todo) { (idTask, error) in
             if let error = error {
-                print(error)
+                self.showAlert(with: error)
             }
             if let _ = idTask {
                 DispatchQueue.main.async {
+                    self.showAlert(with: "A task \(self.taskTextField.text!) was successfully created")
                     self.taskTextField.text = ""
                     self.taskTextField.resignFirstResponder()
                 }
             }
         }
     }
-    
 
 }
 

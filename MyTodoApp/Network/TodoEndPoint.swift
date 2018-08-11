@@ -99,8 +99,7 @@ class TodoEndPoint {
         let url = "\(TodoAPI.baseURL)\(TodoAPI.myTaskUrl)"
         let params = ["title": title,
                       "isDone": false,
-                      "toDoId": todo.id
-            ] as [String : Any]
+                      "toDoId": todo.id] as [String : Any]
         Alamofire.request(url, method: .post, parameters: params).responseJSON { response in
             switch(response.result){
             case .success:

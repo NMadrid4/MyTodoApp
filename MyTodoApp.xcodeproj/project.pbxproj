@@ -32,6 +32,7 @@
 		AC5F27C420F1677900ABD813 /* TodosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5F27C220F1677900ABD813 /* TodosTableViewCell.swift */; };
 		AC5F27C520F1677900ABD813 /* TodosTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC5F27C320F1677900ABD813 /* TodosTableViewCell.xib */; };
 		ACE7E89D211F7EFD00BC4F6B /* TodoEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE7E89C211F7EFD00BC4F6B /* TodoEndPoint.swift */; };
+		ACE7E8B3211FA63400BC4F6B /* ShowAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE7E8B2211FA63400BC4F6B /* ShowAlertViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -190,6 +191,7 @@
 		AC5F27C220F1677900ABD813 /* TodosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosTableViewCell.swift; sourceTree = "<group>"; };
 		AC5F27C320F1677900ABD813 /* TodosTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TodosTableViewCell.xib; sourceTree = "<group>"; };
 		ACE7E89C211F7EFD00BC4F6B /* TodoEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoEndPoint.swift; sourceTree = "<group>"; };
+		ACE7E8B2211FA63400BC4F6B /* ShowAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAlertViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -291,6 +293,7 @@
 		AC14D17E20E81979002306B5 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				ACE7E8B1211FA60600BC4F6B /* Extension */,
 				AC50FCF0210D003900EA09B5 /* Home */,
 				AC51C5352103DC1D0047C4C5 /* Notes */,
 				AC51C5322103DB990047C4C5 /* ToDos */,
@@ -358,6 +361,14 @@
 				AC5F27C320F1677900ABD813 /* TodosTableViewCell.xib */,
 			);
 			path = TodosTableCell;
+			sourceTree = "<group>";
+		};
+		ACE7E8B1211FA60600BC4F6B /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				ACE7E8B2211FA63400BC4F6B /* ShowAlertViewController.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -556,6 +567,7 @@
 				AC51C5392103DC4B0047C4C5 /* NotesDetailViewController.swift in Sources */,
 				AC14D16920E81700002306B5 /* AppDelegate.swift in Sources */,
 				AC5F27B420F15C4E00ABD813 /* SignUpViewController.swift in Sources */,
+				ACE7E8B3211FA63400BC4F6B /* ShowAlertViewController.swift in Sources */,
 				AC5F27B820F1634400ABD813 /* TodosViewController.swift in Sources */,
 				ACE7E89D211F7EFD00BC4F6B /* TodoEndPoint.swift in Sources */,
 				AC50FCF2210D004F00EA09B5 /* AboutViewController.swift in Sources */,
