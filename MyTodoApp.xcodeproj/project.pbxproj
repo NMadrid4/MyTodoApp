@@ -31,6 +31,7 @@
 		AC5F27BD20F165D200ABD813 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5F27BC20F165D200ABD813 /* Task.swift */; };
 		AC5F27C420F1677900ABD813 /* TodosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5F27C220F1677900ABD813 /* TodosTableViewCell.swift */; };
 		AC5F27C520F1677900ABD813 /* TodosTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC5F27C320F1677900ABD813 /* TodosTableViewCell.xib */; };
+		ACE7E89D211F7EFD00BC4F6B /* TodoEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE7E89C211F7EFD00BC4F6B /* TodoEndPoint.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -188,6 +189,7 @@
 		AC5F27BC20F165D200ABD813 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		AC5F27C220F1677900ABD813 /* TodosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosTableViewCell.swift; sourceTree = "<group>"; };
 		AC5F27C320F1677900ABD813 /* TodosTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TodosTableViewCell.xib; sourceTree = "<group>"; };
+		ACE7E89C211F7EFD00BC4F6B /* TodoEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoEndPoint.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -235,6 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				AC1272AC210D087D00FBCECE /* TodoAPI.swift */,
+				ACE7E89C211F7EFD00BC4F6B /* TodoEndPoint.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -392,6 +395,7 @@
 				TargetAttributes = {
 					AC14D16420E81700002306B5 = {
 						CreatedOnToolsVersion = 9.4;
+						LastSwiftMigration = 0940;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -553,6 +557,7 @@
 				AC14D16920E81700002306B5 /* AppDelegate.swift in Sources */,
 				AC5F27B420F15C4E00ABD813 /* SignUpViewController.swift in Sources */,
 				AC5F27B820F1634400ABD813 /* TodosViewController.swift in Sources */,
+				ACE7E89D211F7EFD00BC4F6B /* TodoEndPoint.swift in Sources */,
 				AC50FCF2210D004F00EA09B5 /* AboutViewController.swift in Sources */,
 				AC5F27BD20F165D200ABD813 /* Task.swift in Sources */,
 				AC1272AD210D087D00FBCECE /* TodoAPI.swift in Sources */,
@@ -708,11 +713,13 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = MyTodoApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.doapps.MyTodoApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -723,6 +730,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = MyTodoApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -13,6 +13,12 @@ import Alamofire
 class TodosViewController: UIViewController {
 
     @IBOutlet weak var todoTableView: UITableView!
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(TodosViewController.handleRefresh(_:)), for: .valueChanged)
+        refreshControl.tintColor = .blue
+        return refreshControl
+    }()
     
     var todos: [Todo] = []
     
@@ -20,28 +26,31 @@ class TodosViewController: UIViewController {
         super.viewDidLoad()
         
         todoTableView.register(UINib(nibName: "TodosTableViewCell", bundle: nil), forCellReuseIdentifier: "todoCell")
-        
+        todoTableView.addSubview(refreshControl)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        getData()
+        getData(refreshControl: nil)
+        
     }
-    func getData(){
-        Alamofire.request("\(TodoAPI.baseURL)\(TodoAPI.myTodosURL)").responseJSON { response in
-           
-            switch(response.result){
-            case .success:
-                let data = JSON(response.data!)
-                self.todos = Todo.from(jsonArray: data.array!)
-                self.todoTableView.reloadData()
-            case .failure(let error):
-                print(error)
+    
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        getData(refreshControl: refreshControl)
+    }
+    
+    func getData(refreshControl: UIRefreshControl?){
+        TodoEndPoint.getTodos { (todos, error) in
+            guard error == nil, let todos = todos else {
+                print(error!)
+                return
             }
-            
+            DispatchQueue.main.async {
+                self.todos = todos
+                self.todoTableView.reloadData()
+                refreshControl?.endRefreshing()
+            }
         }
-        
-        
     }
  
     override func performSegue(withIdentifier identifier: String, sender: Any?) {
@@ -76,6 +85,23 @@ extension TodosViewController: UITableViewDataSource{
         
         return cell
     }
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let todoDeleted = self.todos.remove(at: indexPath.row)
+            self.todoTableView.deleteRows(at: [indexPath], with: .automatic)
+            
+            TodoEndPoint.delete(Todo: todoDeleted) { (itemsDeleted, error) in
+            if let error = error {
+                    print(error)
+            
+                }
+                
+            }
+        }
+    }
     
 }

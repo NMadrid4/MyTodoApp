@@ -28,9 +28,22 @@ class TodoDetailViewController: UIViewController {
         }
         if !isExisted {
             todoActionButton.setTitle("Create", for: .normal)
+            todoActionButton.addTarget(self, action: #selector(createTodo), for: .touchUpInside)
         }else{
             todoActionButton.setTitle("save Changes", for: .normal)
             todoActionButton.addTarget(self, action: #selector(saveTodoChanges), for: .touchUpInside)
+        }
+    }
+    @objc func createTodo() {
+        let newTodo = Todo(title: titleTextField.text!, description: descriptionTextView.text!, isTaskAvailable: false, creation: Date(), id: 0)
+        TodoEndPoint.createTodo(withTodo: newTodo) { (idNewTodo, error) in
+            if let error = error {
+                print(error)
+                return
+            }
+            if let _ = idNewTodo {
+                self.navigationController?.popViewController(animated: true)
+            }
         }
     }
     
@@ -44,11 +57,16 @@ class TodoDetailViewController: UIViewController {
     }
     
     func saveTodoChangeWith(todo: Todo){
-        let params = ["title": todo.title, "description": todo.description]
-        let url = String(format: "\(TodoAPI.baseURL)\(TodoAPI.editMyTodoUrl)", "\(todo.id)")
-        Alamofire.request(url, method: .put, parameters: params).responseJSON{ response in
-            self.navigationController?.popViewController(animated: true)
-            
+        TodoEndPoint.edidTodo(withUpdateTodo: todo) { todoId, error in
+            if let error = error {
+                print(error)
+                return
+            }
+            if let _ = todoId {
+                DispatchQueue.main.async {
+                    self.navigationController?.popViewController(animated: true)
+                }
+            }
         }
         
     }
