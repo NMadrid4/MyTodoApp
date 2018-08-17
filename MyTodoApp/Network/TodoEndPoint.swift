@@ -12,23 +12,21 @@ import Alamofire
 
 class TodoEndPoint {
     
-    static func getTodos(completionHandler: @escaping(_ todos: [Todo]?, _ error: String?)-> Void){
-        Alamofire.request("\(TodoAPI.baseURL)\(TodoAPI.myTodosURL)").responseJSON { response in
+  static func getTodos(completionHandler: @escaping(_ todos: [Todo]?, _ error: String?)-> Void){
+      Alamofire.request("\(TodoAPI.baseURL)\(TodoAPI.todoWithTask)", method: .get, parameters: [:], encoding: URLEncoding.queryString).responseJSON { response in
             switch(response.result){
             case .success:
-                let data = JSON(response.data!)
+                let data = JSON(response.data!) 
                 completionHandler(Todo.from(jsonArray: data.array!),nil)
-                
+              
             case .failure(let error):
                 print(error)
                 completionHandler(nil, error.localizedDescription)
             }
-
         }
     }
-    
-    
-      static func edidTodo(withUpdateTodo updateTodo: Todo, completionHandler: @escaping(_ idTodo: String?, _ error: String?)-> Void){
+  
+  static func edidTodo(withUpdateTodo updateTodo: Todo, completionHandler: @escaping(_ idTodo: String?, _ error: String?)-> Void){
       
         let url = String(format: "\(TodoAPI.baseURL)\(TodoAPI.modifyMyTodoUrl)", "\(updateTodo.id)")
           let params = ["title": updateTodo.title, "description": updateTodo.description]
@@ -42,10 +40,9 @@ class TodoEndPoint {
                 print(error)
                 completionHandler(nil, error.localizedDescription)
             }
-          //  
-            
         }
     }
+  
     static func createTodo(withTodo todo: Todo, completionHandler: @escaping(_ idTodo: String?, _ error: String?) -> Void ){
         let url = "\(TodoAPI.baseURL)\(TodoAPI.myTodosURL)"
         let params = ["title": todo.title, "description": todo.description,
@@ -63,7 +60,6 @@ class TodoEndPoint {
                 completionHandler(nil, error.localizedDescription)
             }
       }
-        
     }
     
     static func delete(Todo todo: Todo, completionHandler: @escaping(_ idTodo: Int?, _ error: String?)->Void){
@@ -81,9 +77,8 @@ class TodoEndPoint {
         }
     }
  
-    static func getTaksFrom(Todo todo: Todo, completionHandler: @escaping(_ tasks: [Task]?, _ error: String?)->Void){
-        let url = String(format: "\(TodoAPI.baseURL)\(TodoAPI.todoTaskUrl)", "\(todo.id)")
-        Alamofire.request(url).responseJSON { response in
+    static func getTaksFrom(completionHandler: @escaping(_ tasks: [Task]?, _ error: String?)->Void){
+      Alamofire.request("\(TodoAPI.baseURL)\(TodoAPI.myTaskUrl)", method: .get).responseJSON { response in
             switch(response.result){
             case .success:
                 let data = JSON(response.data!)
@@ -111,4 +106,49 @@ class TodoEndPoint {
             }
         }
     }
+  
+  static func editTask(withUpdateTask updateTask: Task, isDone: Bool, completionHandler: @escaping(_ idTask: String?, _ error: String?)-> Void){
+    
+    let url = String(format: "\(TodoAPI.baseURL)\(TodoAPI.modifyMyTaskUrl)", "\(updateTask.id)")
+    let params = ["title": updateTask.title, "isDone": isDone, "toDoId": updateTask.todoId] as [String : Any]
+    Alamofire.request(url, method: .put, parameters: params).responseJSON{ response in
+      switch(response.result){
+      case .success:
+        let data = JSON(response.data!)
+        completionHandler(data.dictionary!["id"]?.stringValue,nil)
+      case .failure(let error):
+        print(error)
+        completionHandler(nil, error.localizedDescription)
+      }
+    }
+  }
+  
+  static func getNotes(completionHandler: @escaping (_ notes:[Notes]?, _ error: String?) -> Void) {
+    Alamofire.request("\(TodoAPI.baseURL)\(TodoAPI.notesURL)").responseJSON { (response) in
+      switch  response.result {
+      case .success:
+        let data = JSON(response.data!)
+        completionHandler(Notes.from(jsonArray: data.array!),nil)
+      case .failure(let error):
+        print(error)
+        completionHandler(nil,error.localizedDescription)
+      }
+    }
+  }
+  
+  static func createNotes(withNote note:Notes, completionHandler: @escaping(_ idNote: Int?, _ error: String?) -> Void) {
+    let url = "\(TodoAPI.baseURL)\(TodoAPI.notesURL)"
+    let params = ["description": note.description,
+                  "toDoUserId": "0"] as [String: Any]
+    Alamofire.request(url, method: .post, parameters: params).responseJSON { (response) in
+      switch response.result {
+      case .success:
+        let data = JSON(response.data!)
+        completionHandler(data.dictionary!["id"]?.intValue, nil)
+      case .failure(let error):
+        print(error)
+        completionHandler(nil, error.localizedDescription)
+      }
+    }
+  }
 }

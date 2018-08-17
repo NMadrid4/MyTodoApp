@@ -182,10 +182,10 @@
         <!--Home-->
         <scene sceneID="0si-iw-Zhg">
             <objects>
-                <viewControllerPlaceholder storyboardName="Home" id="Krx-0D-rhv" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardIdentifier="Home" storyboardName="Home" id="Krx-0D-rhv" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rw0-0H-ryj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1120" y="-761"/>
+            <point key="canvasLocation" x="643" y="-720"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="twR-Mk-GUa">

@@ -40,7 +40,7 @@ class TodosViewController: UIViewController {
     }
     
     func getData(refreshControl: UIRefreshControl?){
-        TodoEndPoint.getTodos { (todos, error) in
+      TodoEndPoint.getTodos { (todos, error) in
             guard error == nil, let todos = todos else {
                 print(error!)
                 return
@@ -60,7 +60,6 @@ class TodosViewController: UIViewController {
             todoDetailVC.isExisted = true
             self.navigationController?.pushViewController(todoDetailVC, animated: true)
         }
-        
     }
 }
 

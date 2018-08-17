@@ -21,6 +21,20 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="r0f-hy-4kl">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="noteCell" id="h9Z-gK-KYF">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="h9Z-gK-KYF" id="psO-Qx-tA6">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="MdN-pj-rtI" id="vRc-sO-JWR"/>
+                                    <outlet property="delegate" destination="MdN-pj-rtI" id="NZ5-57-k4o"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -35,28 +49,29 @@
                     <navigationItem key="navigationItem" id="hjV-Yi-Zdh">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="EOu-9v-ElD">
                             <connections>
-                                <segue destination="Waw-ka-n4U" kind="show" id="nyP-bv-gpI"/>
+                                <segue destination="Waw-ka-n4U" kind="show" identifier="notesDetail" id="nyP-bv-gpI"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="notesTableView" destination="r0f-hy-4kl" id="Ier-eg-5vi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y4o-oU-3Nw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1396" y="669.71514242878561"/>
         </scene>
-        <!--New note-->
+        <!--Notes Detail View Controller-->
         <scene sceneID="kaV-R5-wPl">
             <objects>
-                <viewController id="Waw-ka-n4U" customClass="NotesDetailViewController" customModule="MyTodoApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="notesDetailVC" id="Waw-ka-n4U" customClass="NotesDetailViewController" customModule="MyTodoApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4s5-1v-rF0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="wBt-bk-hfg">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wBt-bk-hfg">
                                 <rect key="frame" x="20" y="89" width="335" height="520"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ism-dO-R9F">
@@ -78,7 +93,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hdu-xx-Uib"/>
                     </view>
-                    <navigationItem key="navigationItem" title="New note" id="ieX-Fb-8C0"/>
+                    <navigationItem key="navigationItem" id="ieX-Fb-8C0"/>
+                    <connections>
+                        <outlet property="descriptionTextView" destination="wBt-bk-hfg" id="wZ2-4X-Qev"/>
+                        <outlet property="noteButton" destination="ism-dO-R9F" id="DAu-QO-w1u"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XZa-Ai-LcJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

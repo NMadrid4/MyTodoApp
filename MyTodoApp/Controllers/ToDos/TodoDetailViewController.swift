@@ -27,7 +27,7 @@ class TodoDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        /*
         if let todo = todo {
             titleTextField.text = todo.title
             descriptionTextView.text = todo.description
@@ -45,17 +45,18 @@ class TodoDetailViewController: UIViewController {
                     }
                 }
             }
-        }
+        }*/
         if !isExisted {
             todoActionButton.setTitle("Create", for: .normal)
-            todoActionButton.addTarget(self, action: #selector(createTodo), for: .touchUpInside)
+            //todoActionButton.addTarget(self, action: #selector(createTodo), for: .touchUpInside)
         }else{
             todoActionButton.setTitle("save Changes", for: .normal)
             todoActionButton.addTarget(self, action: #selector(saveTodoChanges), for: .touchUpInside)
         }
     }
+  /*
     @objc func createTodo() {
-        let newTodo = Todo(title: titleTextField.text!, description: descriptionTextView.text!, isTaskAvailable: false, creation: Date(), id: 0)
+      let newTodo = Todo(title: titleTextField.text!, description: descriptionTextView.text!, isTaskAvailable: false, creation: Date(), id: 0, task: <#[JSON]#>)
         TodoEndPoint.createTodo(withTodo: newTodo) { (idNewTodo, error) in
             if let error = error {
                 print(error)
@@ -65,7 +66,7 @@ class TodoDetailViewController: UIViewController {
                 self.navigationController?.popViewController(animated: true)
             }
         }
-    }
+    }*/
     
     @objc func saveTodoChanges() {
         if let todo = self.todo {
@@ -87,7 +88,6 @@ class TodoDetailViewController: UIViewController {
                 }
             }
         }
-        
     }
     
     @IBAction func allowTaskAction(_ sender: UISwitch) {
@@ -114,11 +114,11 @@ class TodoDetailViewController: UIViewController {
         guard !taskTextField.text!.isEmpty else {
             return
         }
-        guard let todo = self.todo else{
+        guard let todo = self.todo else {
             return
         }
         sender.isEnabled = false
-        tasks.append(Task(title: taskTextField.text!, id: todo.id))
+       // tasks.append(Task(title: taskTextField.text!, id: todo.id, isDone: false))
         taskTableView.reloadData()
         
         TodoEndPoint.createTask(Title: taskTextField.text!, fromTodo: todo) { (idTask, error) in
@@ -134,7 +134,6 @@ class TodoDetailViewController: UIViewController {
             }
         }
     }
-
 }
 
 extension TodoDetailViewController: UITableViewDataSource {
@@ -147,7 +146,6 @@ extension TodoDetailViewController: UITableViewDataSource {
         cell.textLabel?.text = tasks[indexPath.row].title
         return cell
     }
-    
-    
+        
 }
 

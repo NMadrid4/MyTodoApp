@@ -16,19 +16,21 @@ class Todo {
     var description: String
     var isTaskAvailable: Bool
     var creation: Date
-    var task: [Task]?
+    var task: [JSON]
     
-    init(title: String, description: String, isTaskAvailable: Bool, creation: Date, id: Int) {
+  init(title: String, description: String, isTaskAvailable: Bool, creation: Date, id: Int, task: [JSON]) {
         self.id = id
         self.title = title
         self.description = description
         self.isTaskAvailable = isTaskAvailable
         self.creation = creation
+        self.task = task
+        
     }
     
     static func from(json: JSON) -> Todo {
-        return Todo(title: json["title"].stringValue, description: json["description"].stringValue,
-                    isTaskAvailable: json["isTaskAvailable"].boolValue, creation: Date(), id: json["id"].intValue)
+      return Todo(title: json["title"].stringValue, description: json["description"].stringValue, isTaskAvailable: false,
+                  creation: Date(), id: json["id"].intValue, task: json["tasks"].array!)
     }
     
     static func from(jsonArray: [JSON]) -> [Todo] {
