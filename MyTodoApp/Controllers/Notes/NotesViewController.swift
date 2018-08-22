@@ -19,6 +19,13 @@ class NotesViewController: UIViewController {
     super.viewDidLoad()
     
   }
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    self.navigationController?.navigationBar.isHidden = false
+    self.navigationController?.navigationBar.isHidden = false
+    navigationItem.backBarButtonItem = UIBarButtonItem(title: "Notes", style: .plain, target: nil, action: nil)
+    navigationItem.backBarButtonItem?.tintColor = UIColor.orange
+  }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
@@ -55,10 +62,17 @@ extension NotesViewController: UITableViewDataSource, UITableViewDelegate {
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-      let cell = tableView.dequeueReusableCell(withIdentifier: "noteCell")
-      cell?.textLabel?.text  = notes[indexPath.row].description
-      return cell!
+      let cell = tableView.dequeueReusableCell(withIdentifier: "noteCell")!
+      let newStr = notes[indexPath.row].description
+    if newStr.count > 32 {
+      let noteString = newStr.prefix(30)
+      cell.textLabel?.text  = noteString + "..."
+    }else {
+      cell.textLabel?.text = notes[indexPath.row].description
+    }
+      return cell
   }
+  
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let note = notes[indexPath.row]
     performSegue(withIdentifier: "notesDetail", sender: note)

@@ -21,5 +21,9 @@ class TodoAPI{
     static let modifyMyTaskUrl = "api/Tasks/%@"
     static let myTaskUrl = "api/Tasks"
     static let notesURL = "api/Notes"
+    static let modifyNote = "api/Notes/%@"
+  
+    static let todoUserLogin = "api/ToDoUsers/login"
+    static let todoUser = "api/ToDoUsers"
   
 }

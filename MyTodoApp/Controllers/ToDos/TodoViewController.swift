@@ -7,7 +7,7 @@
 import UIKit
 import SwiftyJSON
 
-class TodoViewController: UIViewController {
+class TodoViewController: UIViewController, CountTasksProtocol {
 
   @IBOutlet weak var todosCollectionView: UICollectionView!
   @IBOutlet weak var taskDoneLabel: UILabel!
@@ -16,26 +16,32 @@ class TodoViewController: UIViewController {
   
   var todos: [Todo] = []
   var tasks: [Task] = []
-  var isDone: Int = Int()
+  var isDoneCount: Int = Int()
   
   override func viewDidLoad() {
     super.viewDidLoad()
     todosCollectionView.register(UINib(nibName: "CollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "celda")
-    getTask()
     
   }
+  
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
     self.navigationController?.navigationBar.isHidden = false
+    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+    navigationItem.backBarButtonItem?.tintColor = UIColor.white
+
+  
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    getData()
     self.navigationController?.navigationBar.isHidden = true
+    getTasks()
+    getData()
+   
   }
 
-  func getTask() {
+  func getTasks() {
     TodoEndPoint.getTaksFrom { (task, error) in
       guard error == nil, let task = task else {
         print(error!)
@@ -43,14 +49,14 @@ class TodoViewController: UIViewController {
       }
       DispatchQueue.main.async {
         self.tasks = task
+        self.isDoneCount = 0
         for itemDone in self.tasks {
           if itemDone.isDone == true {
-              self.isDone+=1
+            self.isDoneCount+=1
           }
         }
-        self.taskDoneLabel.text = String(self.isDone)
-        self.allTaskLabel.text = String(self.tasks.count)
-
+        self.taskDoneLabel.text = String(self.isDoneCount)
+        self.allTaskLabel.text =  String(self.tasks.count)
       }
     }
   }
@@ -67,6 +73,22 @@ class TodoViewController: UIViewController {
       }
     }
   }
+  
+  //protocol
+  func tasksToDone() {
+    if isDoneCount <= tasks.count-1 {
+      isDoneCount+=1
+      self.taskDoneLabel.text = String(self.isDoneCount)
+    }else{
+      return
+    }
+  }
+  
+  func decrease() {
+    isDoneCount-=1
+    self.taskDoneLabel.text = String(self.isDoneCount)
+  }
+  
   override func performSegue(withIdentifier identifier: String, sender: Any?) {
     if identifier == "todoViewDetail", let todo = sender as? Todo {
       let todoDetailVC = storyboard?.instantiateViewController(withIdentifier: "todoDetVC") as! TodoDetViewController
@@ -86,12 +108,12 @@ extension TodoViewController: UICollectionViewDataSource, UICollectionViewDelega
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "celda", for: indexPath) as! CollectionViewCell
     cell.todoTitleLabel.text = todos[indexPath.row].title
     cell.getTask(task: todos[indexPath.row].task)
-    return cell;
+    cell.delegate = self
+    return cell
   }
   
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     let todo = todos[indexPath.row]
     performSegue(withIdentifier: "todoViewDetail", sender: todo)
   }
-
 }

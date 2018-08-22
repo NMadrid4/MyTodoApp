@@ -14,7 +14,7 @@
         <scene sceneID="CjQ-OE-yEu">
             <objects>
                 <viewControllerPlaceholder storyboardName="ToDos" id="wcK-96-gd6" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="9uc-wY-vy0"/>
+                    <tabBarItem key="tabBarItem" title="ToDos" id="9uc-wY-vy0"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GUA-Wc-H2T" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -34,7 +34,8 @@
         <scene sceneID="CXT-TF-6w8">
             <objects>
                 <tabBarController storyboardIdentifier="tabBarController" id="jhX-iG-ZdE" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="NjA-LI-n6z">
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="NjA-LI-n6z">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -54,7 +55,7 @@
             <objects>
                 <viewController id="eFa-3x-fdj" customClass="AboutViewController" customModule="MyTodoApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hHv-SY-cLT">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Y5V-EY-f31"/>
@@ -63,7 +64,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gAT-g0-rWy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="103" y="612"/>
+            <point key="canvasLocation" x="4" y="609"/>
         </scene>
     </scenes>
 </document>

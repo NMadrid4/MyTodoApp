@@ -151,4 +151,68 @@ class TodoEndPoint {
       }
     }
   }
+  
+  static func editNotes(withNote updateNote: Notes, completionHandler: @escaping(_ idNote: Int?, _ error: String?)->Void) {
+    let url = String(format: "\(TodoAPI.baseURL)\(TodoAPI.modifyNote)","\(updateNote.id)")
+    let params = ["description": updateNote.description] as [String: Any]
+    Alamofire.request(url, method: .put, parameters: params).responseJSON { (response) in
+      switch response.result {
+      case .success:
+        let data = JSON(response.data!)
+        completionHandler(data.dictionary!["id"]?.intValue, nil)
+      case .failure(let error):
+        print(error)
+        completionHandler(nil, error.localizedDescription)
+      }
+    }
+  }
+  
+  static func loginUser(email: String, password: String, completionHandler: @escaping(_ idToken: String?, _ idUser: Int?, _ error: String?)->Void) {
+    let url = String(format: "\(TodoAPI.baseURL)\(TodoAPI.todoUserLogin)")
+    let params = ["email": email, "password": password] as [String:Any]
+    Alamofire.request(url, method: .post, parameters: params).responseJSON { (response) in
+      switch response.result {
+      case .success:
+        let data = JSON(response.data!)
+        completionHandler(data.dictionary!["id"]?.stringValue, data.dictionary!["userId"]?.intValue,nil)
+      case .failure(let error):
+        print(error)
+        completionHandler(nil, nil, error.localizedDescription)
+      }
+    }
+  }
+  
+  static func createUser(username: String, email: String, password: String,
+                         completionHandler: @escaping(_ idUser: Int?, _ emailExists: String?, _ error: String?)->Void) {
+    
+    let url = String(format: "\(TodoAPI.baseURL)\(TodoAPI.todoUser)")
+    let params = ["name": "string",
+                  "realm": "string",
+                  "username": username,
+                  "email": email,
+                  "password": password,
+                  "emailVerified": true] as [String : Any]
+    Alamofire.request(url, method: .post, parameters: params).responseJSON { (response) in
+      switch response.result {
+      case .success:
+        let data = JSON(response.data!)
+        completionHandler(data.dictionary!["id"]?.intValue, nil, nil)
+        if let _ = data.dictionary!["error"]?.dictionaryValue  {
+          let error = data.dictionary!["error"]!.dictionaryValue
+          let details = error["details"]!.dictionaryValue
+          let codes = details["codes"]!.dictionaryValue
+          let value = codes["email"]!
+          if value[0] == "uniqueness" {
+            completionHandler(nil,"uniqueness", nil)
+          }
+        }
+       
+      case .failure(let error):
+        print(error)
+        completionHandler(nil,nil, error.localizedDescription)
+      }
+    }
+    
+    
+    }
 }

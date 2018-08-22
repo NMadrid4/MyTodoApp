@@ -13,6 +13,7 @@ class NotesDetailViewController: UIViewController {
   
   @IBOutlet weak var descriptionTextView: UITextView!
   @IBOutlet weak var noteButton: UIButton!
+  @IBOutlet weak var noteBarButton: UIBarButtonItem!
   
     var titleItem: String = "New note"
     var isExisted = false
@@ -21,20 +22,49 @@ class NotesDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = titleItem
+        noteBarButton.tintColor = UIColor.orange
       
       if let note = note {
         descriptionTextView.text = note.description
       }
       if !isExisted {
-        noteButton.setTitle("Create", for: .normal)
-        noteButton.addTarget(self, action: #selector(createNote), for: .touchUpInside)
+        
+        let font = UIFont.systemFont(ofSize: 25)
+        noteBarButton.setTitleTextAttributes([NSAttributedStringKey(rawValue: NSAttributedStringKey.font.rawValue): font], for: .normal)
+        noteBarButton.title = "✓"
       }else{
-        noteButton.setTitle("save Changes", for: .normal)
-       // noteButton.addTarget(self, action: #selector(saveNotesChanges), for: .touchUpInside)
+        noteBarButton.title = "save"
       }
     }
+  func create(text: String) {
+    print(text)
+  }
 
-  @objc func createNote() {
+  @IBAction func noteAction(_ sender: Any) {
+    if !isExisted {
+      createNote()
+    }else {
+      updateNote()
+    }
+  }
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    descriptionTextView.resignFirstResponder()
+  }
+  
+  func updateNote() {
+    let updateNote = Notes(id: note!.id, description: descriptionTextView.text)
+    TodoEndPoint.editNotes(withNote: updateNote) { (idNote, error) in
+      if let error = error {
+        print(error)
+        return
+      }
+      if let _ = idNote {
+        self.navigationController?.popViewController(animated: true)
+      }
+    }
+  }
+  
+  func createNote() {
     guard !descriptionTextView.text!.isEmpty else {
       return
     }
@@ -47,22 +77,10 @@ class NotesDetailViewController: UIViewController {
       if let _ = idNewNote {
         self.navigationController?.popViewController(animated: true)        
       }
-      
     }
-    
-    
-    
-    
   }
   
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+  func saveNote() {
+    
+  }
 }

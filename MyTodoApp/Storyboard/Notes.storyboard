@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,12 +23,26 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="noteCell" id="h9Z-gK-KYF">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="noteCell" editingAccessoryType="checkmark" rowHeight="50" id="h9Z-gK-KYF">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="h9Z-gK-KYF" id="psO-Qx-tA6">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" verticalHuggingPriority="251" image="ic_leftArrow" translatesAutoresizingMaskIntoConstraints="NO" id="cv5-DV-1vA">
+                                                    <rect key="frame" x="336" y="12" width="24" height="24"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="24" id="C6a-uu-gi1"/>
+                                                        <constraint firstAttribute="height" constant="24" id="tkY-Di-ZQe"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="cv5-DV-1vA" secondAttribute="trailing" id="Aaf-Kd-Joz"/>
+                                                <constraint firstItem="cv5-DV-1vA" firstAttribute="top" secondItem="psO-Qx-tA6" secondAttribute="topMargin" constant="1" id="ImC-0a-0fw"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="cv5-DV-1vA" secondAttribute="bottom" constant="3" id="d1t-hP-Sob"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
@@ -48,6 +63,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="hjV-Yi-Zdh">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="EOu-9v-ElD">
+                            <color key="tintColor" red="1" green="0.6008170438019802" blue="0.27099153802773757" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <segue destination="Waw-ka-n4U" kind="show" identifier="notesDetail" id="nyP-bv-gpI"/>
                             </connections>
@@ -70,33 +86,31 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wBt-bk-hfg">
-                                <rect key="frame" x="20" y="89" width="335" height="520"/>
+                                <rect key="frame" x="5" y="64" width="365" height="583"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ism-dO-R9F">
-                                <rect key="frame" x="170" y="629" width="34" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="cmq-hS-nUE"/>
-                                </constraints>
-                                <state key="normal" title="Save"/>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="hdu-xx-Uib" firstAttribute="trailing" secondItem="wBt-bk-hfg" secondAttribute="trailing" constant="20" id="1jh-vg-kev"/>
-                            <constraint firstItem="ism-dO-R9F" firstAttribute="top" secondItem="wBt-bk-hfg" secondAttribute="bottom" constant="20" id="DRV-4E-R1L"/>
-                            <constraint firstItem="hdu-xx-Uib" firstAttribute="bottom" secondItem="ism-dO-R9F" secondAttribute="bottom" constant="8" id="Gx8-S7-jTJ"/>
-                            <constraint firstItem="wBt-bk-hfg" firstAttribute="top" secondItem="hdu-xx-Uib" secondAttribute="top" constant="25" id="JRM-nZ-UeU"/>
-                            <constraint firstItem="ism-dO-R9F" firstAttribute="centerX" secondItem="4s5-1v-rF0" secondAttribute="centerX" id="V7f-8a-BQL"/>
-                            <constraint firstItem="wBt-bk-hfg" firstAttribute="leading" secondItem="hdu-xx-Uib" secondAttribute="leading" constant="20" id="pVR-YM-T1C"/>
+                            <constraint firstItem="hdu-xx-Uib" firstAttribute="trailing" secondItem="wBt-bk-hfg" secondAttribute="trailing" constant="5" id="1jh-vg-kev"/>
+                            <constraint firstItem="wBt-bk-hfg" firstAttribute="top" secondItem="hdu-xx-Uib" secondAttribute="top" id="JRM-nZ-UeU"/>
+                            <constraint firstItem="hdu-xx-Uib" firstAttribute="bottom" secondItem="wBt-bk-hfg" secondAttribute="bottom" constant="20" id="TLD-Z1-sHu"/>
+                            <constraint firstItem="wBt-bk-hfg" firstAttribute="leading" secondItem="hdu-xx-Uib" secondAttribute="leading" constant="5" id="pVR-YM-T1C"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hdu-xx-Uib"/>
                     </view>
-                    <navigationItem key="navigationItem" id="ieX-Fb-8C0"/>
+                    <navigationItem key="navigationItem" id="ieX-Fb-8C0">
+                        <barButtonItem key="rightBarButtonItem" title="Item" style="done" id="P5y-zp-D9V">
+                            <connections>
+                                <action selector="noteAction:" destination="Waw-ka-n4U" id="XVZ-aR-Y1o"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="descriptionTextView" destination="wBt-bk-hfg" id="wZ2-4X-Qev"/>
-                        <outlet property="noteButton" destination="ism-dO-R9F" id="DAu-QO-w1u"/>
+                        <outlet property="noteBarButton" destination="P5y-zp-D9V" id="oA0-7N-ANs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XZa-Ai-LcJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -123,4 +137,7 @@
             <point key="canvasLocation" x="456.80000000000001" y="669.71514242878561"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ic_leftArrow" width="16" height="16"/>
+    </resources>
 </document>
