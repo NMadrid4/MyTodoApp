@@ -183,6 +183,21 @@ class TodoEndPoint {
     }
   }
   
+  static func deleteNote(note: Notes, completionHandler: @escaping(_ idNote: Int?, _ error: String?)->Void){
+    let url = String(format: "\(TodoAPI.baseURL)\(TodoAPI.modifyNote)", "\(note.id)")
+    let params = ["id": note.id]
+    Alamofire.request(url, method: .delete, parameters: params).responseJSON { response in
+      switch(response.result){
+      case .success:
+        let data = JSON(response.data!)
+        completionHandler(data.dictionary!["count"]?.intValue, nil)
+      case .failure(let error):
+        print(error)
+        completionHandler(nil,error.localizedDescription)
+      }
+    }
+  }
+  
   static func loginUser(email: String, password: String, completionHandler: @escaping(_ idToken: String?, _ idUser: Int?, _ error: String?)->Void) {
     let url = String(format: "\(TodoAPI.baseURL)\(TodoAPI.todoUserLogin)")
     let params = ["email": email, "password": password] as [String:Any]

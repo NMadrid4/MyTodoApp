@@ -83,7 +83,4 @@ class NotesDetailViewController: UIViewController {
     }
   }
   
-  func saveNote() {
-    
-  }
 }

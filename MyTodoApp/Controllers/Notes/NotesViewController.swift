@@ -50,6 +50,21 @@ class NotesViewController: UIViewController {
     }
   }
   
+  func deleteNote(note: Notes, positionNote: Int){
+    TodoEndPoint.deleteNote(note: note) { (idDeletedNote, error) in
+      if let error = error {
+        print(error)
+        return
+      }
+      if let idDeletedNote = idDeletedNote {
+        if idDeletedNote > 0 {
+          self.notes.remove(at: positionNote)
+          self.notesTableView.reloadData()
+        }
+      }
+    }
+  }
+  
   override func performSegue(withIdentifier identifier: String, sender: Any?) {
     if identifier == "notesDetail", let note = sender as? Notes{
       let noteDetail = storyboard?.instantiateViewController(withIdentifier: "notesDetailVC") as! NotesDetailViewController
@@ -82,6 +97,16 @@ extension NotesViewController: UITableViewDataSource, UITableViewDelegate {
     let note = notes[indexPath.row]
     performSegue(withIdentifier: "notesDetail", sender: note)
     
+  }
+  
+  func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+    return true
+  }
+  
+  func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    if editingStyle == .delete {
+      deleteNote(note: notes[indexPath.row], positionNote: indexPath.row)
+    }
   }
   
   

@@ -18,6 +18,7 @@ class TodoDetViewController: UIViewController {
   @IBOutlet weak var newTaskButton: UIButton!
   @IBOutlet weak var taskTitleLabel: UILabel!
   @IBOutlet weak var taskCountLabel: UILabel!
+  @IBOutlet weak var todoScrollView: UIScrollView!
   
   var todo: Todo?
   var tasks: [Task] = []
@@ -37,6 +38,40 @@ class TodoDetViewController: UIViewController {
     taskView.layer.cornerRadius = 4.0
     taskTableView.register(UINib(nibName: "TaskTableViewCell", bundle: nil), forCellReuseIdentifier: "taskCell")
     userId = UserData.sharedInstance.idUser!
+    registerKeyboardNotifications()
+    todoScrollView.isScrollEnabled = false
+  }
+  
+  
+  func registerKeyboardNotifications() {
+    NotificationCenter.default.addObserver(self,
+                                           selector: #selector(keyboardWillShow(notification:)),
+                                           name: NSNotification.Name.UIKeyboardWillShow,
+                                           object: nil)
+    NotificationCenter.default.addObserver(self,
+                                           selector: #selector(keyboardWillHide(notification:)),
+                                           name: NSNotification.Name.UIKeyboardWillHide,
+                                           object: nil)
+  }
+  
+  deinit {
+    NotificationCenter.default.removeObserver(self)
+  }
+  
+  @objc func keyboardWillShow(notification: NSNotification) {
+    todoScrollView.isScrollEnabled = true
+    let userInfo: NSDictionary = notification.userInfo! as NSDictionary
+    let keyboardInfo = userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue
+    let keyboardSize = keyboardInfo.cgRectValue.size
+    let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
+    todoScrollView.contentInset = contentInsets
+    todoScrollView.scrollIndicatorInsets = contentInsets
+  }
+  
+  @objc func keyboardWillHide(notification: NSNotification) {
+    todoScrollView.isScrollEnabled = false
+    todoScrollView.contentInset = .zero
+    todoScrollView.scrollIndicatorInsets = .zero
   }
   
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
