@@ -181,7 +181,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.45259987270000002" green="0.61048167440000001" blue="0.71541045979999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="1" green="0.65490196079999996" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="pAO-kS-y88" firstAttribute="top" secondItem="JSV-qo-YoE" secondAttribute="top" constant="38" id="5zu-OW-Hd7"/>
                             <constraint firstItem="JSV-qo-YoE" firstAttribute="trailing" secondItem="2UA-B4-cHB" secondAttribute="trailing" constant="35" id="9hB-Be-NoT"/>

@@ -35,23 +35,14 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     layer.colors = [UIColor(red: 255/255.0, green: 204/255.0, blue: 98/255.0, alpha: 1.0).cgColor, UIColor(red: 255/255.0, green: 83/255.0, blue: 26/255.0, alpha: 0.9).cgColor]
     frontView.layer.insertSublayer(layer, at: 0)
     
-    let border = CALayer()
-    let width = CGFloat(2.0)
-    border.borderColor = UIColor.white.cgColor
-    border.frame = CGRect(x: 0, y: usernameTexField.frame.size.height - width, width: usernameTexField.frame.size.width, height: usernameTexField.frame.size.height)
-    border.borderWidth = width
-    usernameTexField.layer.addSublayer(border)
+    usernameTexField.putLayer(textField: usernameTexField)
     usernameTexField.layer.masksToBounds = true
     usernameTexField.backgroundColor = UIColor.clear
     usernameTexField.attributedPlaceholder = NSAttributedString(string: "example@example.com",
                                                                 attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
     
     
-    let border1 = CALayer()
-    border1.borderColor = UIColor.white.cgColor
-    border1.frame = CGRect(x: 0, y: passwordTexField.frame.size.height - width, width: passwordTexField.frame.size.width, height: passwordTexField.frame.size.height)
-    border1.borderWidth = width
-    passwordTexField.layer.addSublayer(border1)
+    passwordTexField.putLayer(textField: passwordTexField)
     passwordTexField.layer.masksToBounds = true
     passwordTexField.backgroundColor = UIColor.clear
     passwordTexField.attributedPlaceholder = NSAttributedString(string: "password",

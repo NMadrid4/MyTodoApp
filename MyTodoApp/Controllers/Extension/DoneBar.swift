@@ -26,4 +26,12 @@ extension UITextField{
     
     self.inputAccessoryView = doneToolbar
   }
+  
+  func putLayer(textField: UITextField) {
+    let border1 = CALayer()
+    border1.borderColor = UIColor.white.cgColor
+    border1.frame = CGRect(x: 0, y: textField.frame.size.height - 2.0, width: textField.frame.size.width, height: textField.frame.size.height)
+    border1.borderWidth = 2.0
+    textField.layer.addSublayer(border1)
+  }
 }
