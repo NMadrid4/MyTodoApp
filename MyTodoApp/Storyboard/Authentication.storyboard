@@ -253,11 +253,9 @@
                                     <action selector="singUpAction:" destination="PvO-iG-eGh" eventType="touchUpInside" id="Zeo-4l-bWc"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign Up" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i5y-DK-6sD">
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sign Up" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i5y-DK-6sD">
                                 <rect key="frame" x="141" y="79" width="92" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="FZ9-8I-Bnf"/>
-                                </constraints>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -265,7 +263,6 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="i5y-DK-6sD" firstAttribute="top" secondItem="jMs-OU-PBl" secondAttribute="top" constant="15" id="0GB-BZ-0d4"/>
                             <constraint firstItem="vIn-lV-ZKJ" firstAttribute="top" secondItem="6BK-9s-YN6" secondAttribute="bottom" constant="2" id="8a3-Vr-Swq"/>
                             <constraint firstItem="4dX-iP-omg" firstAttribute="top" secondItem="oN5-Qh-Jyh" secondAttribute="bottom" constant="1" id="8cb-mu-jk5"/>
                             <constraint firstItem="jMs-OU-PBl" firstAttribute="trailing" secondItem="vIn-lV-ZKJ" secondAttribute="trailing" constant="74" id="9Ps-2s-buj"/>
@@ -275,10 +272,8 @@
                             <constraint firstItem="e4d-ID-O32" firstAttribute="top" secondItem="hml-8a-Yxx" secondAttribute="bottom" constant="19" id="A04-Vq-2Ed"/>
                             <constraint firstItem="iwL-Ub-qfE" firstAttribute="top" secondItem="jMs-OU-PBl" secondAttribute="top" constant="126" id="D8m-MV-dMx"/>
                             <constraint firstItem="jMs-OU-PBl" firstAttribute="trailing" secondItem="Fe6-Ne-DXY" secondAttribute="trailing" constant="58" id="GAr-eP-qmx"/>
-                            <constraint firstItem="i5y-DK-6sD" firstAttribute="leading" secondItem="jMs-OU-PBl" secondAttribute="leading" constant="141" id="GrA-d6-xrI"/>
                             <constraint firstItem="Fe6-Ne-DXY" firstAttribute="top" secondItem="e4d-ID-O32" secondAttribute="bottom" constant="28" id="KFR-3G-fpo"/>
                             <constraint firstItem="rjc-iE-OSq" firstAttribute="top" secondItem="4dX-iP-omg" secondAttribute="bottom" constant="2" id="OSd-b7-p5N"/>
-                            <constraint firstItem="jMs-OU-PBl" firstAttribute="trailing" secondItem="i5y-DK-6sD" secondAttribute="trailing" constant="142" id="Ouf-we-xXU"/>
                             <constraint firstItem="jMs-OU-PBl" firstAttribute="trailing" secondItem="e4d-ID-O32" secondAttribute="trailing" constant="58" id="Qsc-NJ-htt"/>
                             <constraint firstItem="e4d-ID-O32" firstAttribute="leading" secondItem="rjc-iE-OSq" secondAttribute="trailing" constant="8" id="STY-OD-0OG"/>
                             <constraint firstItem="4dX-iP-omg" firstAttribute="leading" secondItem="jMs-OU-PBl" secondAttribute="leading" constant="57" id="UDm-8v-1ho"/>
@@ -309,6 +304,7 @@
                         <outlet property="rePasswordErrorMessageLabel" destination="vIn-lV-ZKJ" id="6HG-ms-tmU"/>
                         <outlet property="rePasswordTextField" destination="6BK-9s-YN6" id="Aye-dV-plk"/>
                         <outlet property="signUpButton" destination="kGa-xB-AOt" id="9ip-eE-I91"/>
+                        <outlet property="titleLabel" destination="i5y-DK-6sD" id="t46-Mz-vvo"/>
                         <outlet property="usernameErrorLabel" destination="iwL-Ub-qfE" id="Bah-Ep-GR7"/>
                         <outlet property="usernameTextField" destination="npI-he-CEt" id="r19-xa-8ti"/>
                         <segue destination="iMO-cY-Wg9" kind="presentation" identifier="showModal" modalPresentationStyle="overCurrentContext" id="xPK-Iv-hIg"/>
