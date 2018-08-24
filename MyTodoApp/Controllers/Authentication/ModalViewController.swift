@@ -7,18 +7,39 @@
 //
 
 import UIKit
+import NVActivityIndicatorView
+
 
 class ModalViewController: UIViewController {
-
-  @IBOutlet weak var loadingProgressView: UIProgressView!
-  var current:Float = 0.0
+  @IBOutlet weak var loadingView: NVActivityIndicatorView!
+  
+  var parentVC: SignUpViewController?
+  
   override func viewDidLoad() {
-        super.viewDidLoad()
+    super.viewDidLoad()
+    
+    self.view.layer.cornerRadius = 4.0
+    loadingView.type = . ballClipRotatePulse
+    loadingView.color = UIColor.red
+    loadingView.startAnimating()
+    parentVC?.controlDelegate = self
+  }
+}
 
-    DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-      self.dismiss(animated: true, completion: nil)
+extension ModalViewController: SignUpControlDelegate{
+  func dismissMyModal(value: Bool) {
+    if value {
+      DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+        self.dismiss(animated: false, completion: nil)
+        self.navigationController?.popViewController(animated: true)
+      }
+    }else {
+      DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+        self.loadingView.stopAnimating()
+        self.dismiss(animated: false, completion: nil)
+        self.navigationController?.popViewController(animated: true)
+      }
     }
   }
-  
 }
 

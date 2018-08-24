@@ -9,7 +9,7 @@
 import UIKit
 
 class TaskTableViewCell: UITableViewCell {
-
+  
   @IBOutlet weak var taskTitleLabel: UILabel!
   @IBOutlet weak var isDoneButton: UIButton!
   var taskId = 0
@@ -17,12 +17,11 @@ class TaskTableViewCell: UITableViewCell {
   var isDone: Bool?
   
   override func awakeFromNib() {
-        super.awakeFromNib()
-
+    super.awakeFromNib()
   }
   
   override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+    super.setSelected(selected, animated: animated)
   }
   
   func saveTodoChangeWith(task: Task, newisDone: Bool){
@@ -30,10 +29,6 @@ class TaskTableViewCell: UITableViewCell {
       if let error = error {
         print(error)
         return
-      }
-      if let _ = taskId {
-        DispatchQueue.main.async {
-        }
       }
     }
   }

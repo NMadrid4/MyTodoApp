@@ -17,11 +17,14 @@ class TodoViewController: UIViewController, CountTasksProtocol {
   var todos: [Todo] = []
   var tasks: [Task] = []
   var isDoneCount: Int = Int()
+  var userToken: String?
+  var idUser: Int?
   
   override func viewDidLoad() {
     super.viewDidLoad()
     todosCollectionView.register(UINib(nibName: "CollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "celda")
-    
+    userToken = UserData.sharedInstance.userToken!
+    idUser = UserData.sharedInstance.idUser!
   }
   
   override func viewWillDisappear(_ animated: Bool) {
@@ -29,8 +32,6 @@ class TodoViewController: UIViewController, CountTasksProtocol {
     self.navigationController?.navigationBar.isHidden = false
     navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     navigationItem.backBarButtonItem?.tintColor = UIColor.white
-
-  
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -38,7 +39,6 @@ class TodoViewController: UIViewController, CountTasksProtocol {
     self.navigationController?.navigationBar.isHidden = true
     getTasks()
     getData()
-   
   }
 
   func getTasks() {
@@ -62,7 +62,10 @@ class TodoViewController: UIViewController, CountTasksProtocol {
   }
   
   func getData(){
-    TodoEndPoint.getTodos { (todos, error) in
+    guard let idUser = idUser, let userToken = userToken else {
+      return
+    }
+    TodoEndPoint.getUserTodos(userToken: userToken, idUser: idUser) { (todos, error) in
       guard error == nil, let todos = todos else {
         print(error!)
         return
@@ -72,6 +75,7 @@ class TodoViewController: UIViewController, CountTasksProtocol {
         self.todosCollectionView.reloadData()
       }
     }
+
   }
   
   //protocol

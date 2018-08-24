@@ -9,37 +9,40 @@
 import UIKit
 
 class NotesDetailViewController: UIViewController {
-
+  
   
   @IBOutlet weak var descriptionTextView: UITextView!
   @IBOutlet weak var noteButton: UIButton!
   @IBOutlet weak var noteBarButton: UIBarButtonItem!
   
-    var titleItem: String = "New note"
-    var isExisted = false
-    var note: Notes?
+  var titleItem: String = "New note"
+  var isExisted = false
+  var note: Notes?
+  var userId: Int?
   
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        navigationItem.title = titleItem
-        noteBarButton.tintColor = UIColor.orange
-      
-      if let note = note {
-        descriptionTextView.text = note.description
-      }
-      if !isExisted {
-        
-        let font = UIFont.systemFont(ofSize: 25)
-        noteBarButton.setTitleTextAttributes([NSAttributedStringKey(rawValue: NSAttributedStringKey.font.rawValue): font], for: .normal)
-        noteBarButton.title = "✓"
-      }else{
-        noteBarButton.title = "save"
-      }
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    userId = UserData.sharedInstance.idUser
+    navigationItem.title = titleItem
+    noteBarButton.tintColor = UIColor.orange
+    
+    if let note = note {
+      descriptionTextView.text = note.description
     }
+    if !isExisted {
+      let font = UIFont.systemFont(ofSize: 25)
+      noteBarButton.setTitleTextAttributes([NSAttributedStringKey(rawValue: NSAttributedStringKey.font.rawValue): font], for: .normal)
+      noteBarButton.title = "✓"
+    }else{
+      noteBarButton.title = "save"
+    }
+  }
+  
   func create(text: String) {
     print(text)
   }
-
+  
   @IBAction func noteAction(_ sender: Any) {
     if !isExisted {
       createNote()
@@ -69,7 +72,7 @@ class NotesDetailViewController: UIViewController {
       return
     }
     let newNote = Notes(id: 0, description: descriptionTextView.text!)
-    TodoEndPoint.createNotes(withNote: newNote) { (idNewNote, error) in
+    TodoEndPoint.createNotes(withNote: newNote, idUser: userId!) { (idNewNote, error) in
       if let error = error {
         print(error)
         return

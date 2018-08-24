@@ -16,11 +16,12 @@ class TodoAPI{
     static let myTodosURL = "api/ToDos"
     static let modifyMyTodoUrl = "api/ToDos/%@"
     static let todoWithTask = "api/ToDos?filter={\"include\":\"tasks\"}".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-    
+    static let myUserTodosURL = "api/user-todos"
+  
     static let todoTaskUrl = "api/ToDos/%@/tasks"
     static let modifyMyTaskUrl = "api/Tasks/%@"
     static let myTaskUrl = "api/Tasks"
-    static let notesURL = "api/Notes"
+    static let userNotesURL = "api/user-notes"
     static let modifyNote = "api/Notes/%@"
   
     static let todoUserLogin = "api/ToDoUsers/login"

@@ -38,10 +38,10 @@ class CollectionViewCell: UICollectionViewCell {
   var todo:  [Todo] = []
   var value: Int = Int()
   var delegate: CountTasksProtocol?
-
+  
   
   override func awakeFromNib() {
-        super.awakeFromNib()
+    super.awakeFromNib()
     
     tasksLayout.append((taskOneLabel, taskOneButton))
     tasksLayout.append((taskTwoLabel, taskTwoButton))
@@ -58,7 +58,7 @@ class CollectionViewCell: UICollectionViewCell {
     taskContentView.layer.shadowOpacity = 0.5
     taskContentView.layer.masksToBounds = false
   }
-
+  
   @IBAction func taskOneState(_ sender: UIButton) {
     value = 0
     changeState(button: sender,val: value)
@@ -92,7 +92,7 @@ class CollectionViewCell: UICollectionViewCell {
       }
     }
   }
- 
+  
   func getTask(task: [JSON]){
     tasks = Task.from(jsonArray: task)
     if tasks.count > 0{
@@ -106,7 +106,7 @@ class CollectionViewCell: UICollectionViewCell {
   }
   
   func set(Tasks tasks: [Task]){
-
+    
     for (index,taskLayout) in tasksLayout.enumerated(){
       if index >= tasks.count{
         break
@@ -136,7 +136,7 @@ class CollectionViewCell: UICollectionViewCell {
       if delegate != nil {
         delegate?.tasksToDone()
       }
-   }
+    }
     saveTodoChangeWith(task: tasks[val], newisDone: isDone)    
- }
+  }
 }

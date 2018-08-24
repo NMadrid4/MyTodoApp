@@ -9,7 +9,7 @@ import UIKit
 import SwiftyJSON
 
 class TodoDetViewController: UIViewController {
-
+  
   @IBOutlet weak var todoTitleTextField: UITextField!
   @IBOutlet weak var todoDescriptionTextView: UITextView!
   @IBOutlet weak var taskView: UIView!
@@ -22,6 +22,7 @@ class TodoDetViewController: UIViewController {
   var todo: Todo?
   var tasks: [Task] = []
   var isExisted = false
+  var userId: Int?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -30,11 +31,19 @@ class TodoDetViewController: UIViewController {
     self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
     self.navigationController?.navigationBar.shadowImage = UIImage()
     self.navigationController?.navigationBar.isTranslucent = true
+    self.navigationController?.navigationBar.tintColor = UIColor.white
     self.navigationController?.view.backgroundColor = .clear
     todoDescriptionTextView.layer.cornerRadius = 4.0
     taskView.layer.cornerRadius = 4.0
     taskTableView.register(UINib(nibName: "TaskTableViewCell", bundle: nil), forCellReuseIdentifier: "taskCell")
+    userId = UserData.sharedInstance.idUser!
   }
+  
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    todoTitleTextField.resignFirstResponder()
+    todoDescriptionTextView.resignFirstResponder()
+  }
+  
   
   func setData() {
     if let todo = todo {
@@ -65,7 +74,7 @@ class TodoDetViewController: UIViewController {
   
   @objc func createTodo() {
     let newTodo = Todo(title: todoTitleTextField.text!, description: todoDescriptionTextView.text!, isTaskAvailable: false, creation: Date(), id: 0, task: [JSON(tasks)])
-    TodoEndPoint.createTodo(withTodo: newTodo) { (idNewTodo, error) in
+    TodoEndPoint.createTodo(withTodo: newTodo, userId: userId!) { (idNewTodo, error) in
       if let error = error {
         print(error)
         return
@@ -108,41 +117,60 @@ class TodoDetViewController: UIViewController {
       guard let textField = alert.textFields?.first,
         let newTask = textField.text else {
           return
-        }
-     
-      self.tasks.append(Task(title: newTask, id: 0, isDone: false, todoId: self.todo!.id))
-      self.taskTableView.reloadData()
-      
-      TodoEndPoint.createTask(Title: newTask, fromTodo: self.todo!) { (idTask, error) in
-        if let error = error {
-          print(error)
-          return
-        }
-        if let _ = idTask {
-          DispatchQueue.main.async {
-            self.showAlert(with: "A task was successfully created")
-            self.taskCountLabel.text = String(self.tasks.count) + " " + "Tasks"
+      }
+      if newTask != "" {
+        self.tasks.append(Task(title: newTask, id: 0, isDone: false, todoId: self.todo!.id))
+        self.taskTableView.reloadData()
+        
+        TodoEndPoint.createTask(Title: newTask, fromTodo: self.todo!) { (idTask, error) in
+          if let error = error {
+            print(error)
+            return
+          }
+          if let _ = idTask {
+            DispatchQueue.main.async {
+              self.showAlert(with: "A task was successfully created")
+              self.taskCountLabel.text = String(self.tasks.count) + " " + "Tasks"
+            }
           }
         }
+      }else{
+        self.showAlert(with: "please write some task ")
       }
+      
     }
     alert.addTextField()
     alert.addAction(saveAction)
     self.present(alert, animated: true, completion: nil)
   }
-
+  
+  func deleteTask(task: Task, positionTask: Int){
+    TodoEndPoint.deleteTask(task: task) { (idDeletedTask, error) in
+      if let error = error {
+        print(error)
+        return
+      }
+      if let idDeletedTask = idDeletedTask {
+        if idDeletedTask > 0 {
+          self.tasks.remove(at: positionTask)
+          self.taskCountLabel.text = String(self.tasks.count) + " " + "Tasks"
+          self.taskTableView.reloadData()
+        }
+      }
+    }
+  }
 }
 
 extension TodoDetViewController: UITableViewDataSource {
   
-   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return tasks.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-   let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskTableViewCell
-   cell.taskTitleLabel.text = tasks[indexPath.row].title
-   
+    let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskTableViewCell
+    cell.taskTitleLabel.text = tasks[indexPath.row].title
+    
     if tasks[indexPath.row].isDone {
       let attributedString = NSMutableAttributedString(string: tasks[indexPath.row].title)
       attributedString.addAttribute(NSAttributedStringKey.strikethroughStyle, value: 2, range: NSMakeRange(0, attributedString.length))
@@ -157,8 +185,18 @@ extension TodoDetViewController: UITableViewDataSource {
     }
     cell.taskId = tasks[indexPath.row].id
     cell.todoId = tasks[indexPath.row].todoId
-   return cell
-   }
+    return cell
+  }
+  
+  func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+    return true
+  }
+  
+  func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    if editingStyle == .delete{
+      deleteTask(task: tasks[indexPath.row], positionTask: indexPath.row)
+    }
+  }
   
 }
 

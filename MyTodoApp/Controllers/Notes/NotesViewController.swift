@@ -9,22 +9,25 @@
 import UIKit
 
 class NotesViewController: UIViewController {
-
+  
   
   @IBOutlet weak var notesTableView: UITableView!
   
   var notes: [Notes] = []
+  var userToken: String?
+  var userId: Int?
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+    userToken = UserData.sharedInstance.userToken
+    userId = UserData.sharedInstance.idUser
   }
+  
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
     self.navigationController?.navigationBar.isHidden = false
     self.navigationController?.navigationBar.isHidden = false
     navigationItem.backBarButtonItem = UIBarButtonItem(title: "Notes", style: .plain, target: nil, action: nil)
-    navigationItem.backBarButtonItem?.tintColor = UIColor.orange
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -33,9 +36,11 @@ class NotesViewController: UIViewController {
   }
   
   func getData() {
-    TodoEndPoint.getNotes { (notes, error) in
+    TodoEndPoint.getNotes(userToken: userToken!, idUser: userId!) { (notes, error) in
       guard error == nil, let notes = notes else {
-        print(error!)
+        if let error = error {
+          print(error)
+        }
         return
       }
       DispatchQueue.main.async {
@@ -47,11 +52,11 @@ class NotesViewController: UIViewController {
   
   override func performSegue(withIdentifier identifier: String, sender: Any?) {
     if identifier == "notesDetail", let note = sender as? Notes{
-        let noteDetail = storyboard?.instantiateViewController(withIdentifier: "notesDetailVC") as! NotesDetailViewController
-        noteDetail.titleItem = "Edit Note"
-        noteDetail.isExisted = true
-        noteDetail.note = note
-        self.navigationController?.pushViewController(noteDetail, animated: true)
+      let noteDetail = storyboard?.instantiateViewController(withIdentifier: "notesDetailVC") as! NotesDetailViewController
+      noteDetail.titleItem = "Edit Note"
+      noteDetail.isExisted = true
+      noteDetail.note = note
+      self.navigationController?.pushViewController(noteDetail, animated: true)
     }
   }
 }
@@ -62,15 +67,15 @@ extension NotesViewController: UITableViewDataSource, UITableViewDelegate {
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-      let cell = tableView.dequeueReusableCell(withIdentifier: "noteCell")!
-      let newStr = notes[indexPath.row].description
+    let cell = tableView.dequeueReusableCell(withIdentifier: "noteCell")!
+    let newStr = notes[indexPath.row].description
     if newStr.count > 32 {
       let noteString = newStr.prefix(30)
       cell.textLabel?.text  = noteString + "..."
     }else {
       cell.textLabel?.text = notes[indexPath.row].description
     }
-      return cell
+    return cell
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
