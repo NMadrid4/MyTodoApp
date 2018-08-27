@@ -8,8 +8,6 @@
 
 import UIKit
 
-
-
 protocol SignUpControlDelegate{
     func dismissMyModal(value: Bool)
 }
@@ -48,31 +46,10 @@ class SignUpViewController: UIViewController {
         layer.colors = [UIColor(red: 255/255.0, green: 204/255.0, blue: 98/255.0, alpha: 1.0).cgColor, UIColor(red: 255/255.0, green: 83/255.0, blue: 26/255.0, alpha: 0.9).cgColor]
         backgroundView.layer.insertSublayer(layer, at: 0)
         
-        
-        usernameTextField.layer.masksToBounds = true
-        usernameTextField.backgroundColor = UIColor.clear
-        usernameTextField.attributedPlaceholder = NSAttributedString(string: "Username",
-                                                                     attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
-        
-        
-        
-        passwordTextField.layer.masksToBounds = true
-        passwordTextField.backgroundColor = UIColor.clear
-        passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password",
-                                                                     attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
-        
-        
-        emailTextField.layer.masksToBounds = true
-        emailTextField.backgroundColor = UIColor.clear
-        emailTextField.attributedPlaceholder = NSAttributedString(string: "example@example.com",
-                                                                  attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
-        
-        
-        rePasswordTextField.layer.masksToBounds = true
-        rePasswordTextField.backgroundColor = UIColor.clear
-        rePasswordTextField.attributedPlaceholder = NSAttributedString(string: "Re-password",
-                                                                       attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
-        
+        usernameTextField.customTextField(textField: usernameTextField, placeholderText: "Username")
+        emailTextField.customTextField(textField: emailTextField, placeholderText: "example@example.com")
+        passwordTextField.customTextField(textField: passwordTextField, placeholderText: "password")
+        rePasswordTextField.customTextField(textField: rePasswordTextField, placeholderText: "re-password")
         
     }
     
@@ -112,7 +89,7 @@ class SignUpViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         //self.titleLabel.center.y -= self.backgroundView.bounds.height
-        //print(self.backgroundView.bounds.width)
+        //print(self.usernameTextField.bounds)
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)

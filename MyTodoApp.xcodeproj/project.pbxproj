@@ -16,7 +16,7 @@
 		915C8BEC21275FE9007F6C11 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915C8BEA21275FE9007F6C11 /* TaskTableViewCell.swift */; };
 		915C8BED21275FE9007F6C11 /* TaskTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 915C8BEB21275FE9007F6C11 /* TaskTableViewCell.xib */; };
 		91691853212329CA00CB76F0 /* Notes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91691852212329CA00CB76F0 /* Notes.swift */; };
-		91A7124F212F33F900B97242 /* DoneBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A7124E212F33F900B97242 /* DoneBar.swift */; };
+		91A7124F212F33F900B97242 /* TextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A7124E212F33F900B97242 /* TextFieldExtension.swift */; };
 		AC1272AD210D087D00FBCECE /* TodoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1272AC210D087D00FBCECE /* TodoAPI.swift */; };
 		AC14D16920E81700002306B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC14D16820E81700002306B5 /* AppDelegate.swift */; };
 		AC14D17120E81700002306B5 /* MyTodoApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AC14D16F20E81700002306B5 /* MyTodoApp.xcdatamodeld */; };
@@ -51,7 +51,7 @@
 		915C8BEA21275FE9007F6C11 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
 		915C8BEB21275FE9007F6C11 /* TaskTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskTableViewCell.xib; sourceTree = "<group>"; };
 		91691852212329CA00CB76F0 /* Notes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notes.swift; sourceTree = "<group>"; };
-		91A7124E212F33F900B97242 /* DoneBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneBar.swift; sourceTree = "<group>"; };
+		91A7124E212F33F900B97242 /* TextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldExtension.swift; sourceTree = "<group>"; };
 		AC1272AC210D087D00FBCECE /* TodoAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoAPI.swift; sourceTree = "<group>"; };
 		AC14D16520E81700002306B5 /* MyTodoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyTodoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC14D16820E81700002306B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -239,7 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				ACE7E8B2211FA63400BC4F6B /* ShowAlertViewController.swift */,
-				91A7124E212F33F900B97242 /* DoneBar.swift */,
+				91A7124E212F33F900B97242 /* TextFieldExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -387,7 +387,7 @@
 				ACE7E89D211F7EFD00BC4F6B /* TodoEndPoint.swift in Sources */,
 				AC50FCF2210D004F00EA09B5 /* AboutViewController.swift in Sources */,
 				912A12EE2124C4E30017D494 /* TodoViewController.swift in Sources */,
-				91A7124F212F33F900B97242 /* DoneBar.swift in Sources */,
+				91A7124F212F33F900B97242 /* TextFieldExtension.swift in Sources */,
 				915C8BAC212715E5007F6C11 /* TodoDetViewController.swift in Sources */,
 				915C8BEC21275FE9007F6C11 /* TaskTableViewCell.swift in Sources */,
 				AC5F27BD20F165D200ABD813 /* Task.swift in Sources */,

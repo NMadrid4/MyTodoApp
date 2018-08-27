@@ -16,7 +16,7 @@ class NotesViewController: UIViewController {
   var notes: [Notes] = []
   var userToken: String?
   var userId: Int?
-  
+    
   override func viewDidLoad() {
     super.viewDidLoad()
     userToken = UserData.sharedInstance.userToken

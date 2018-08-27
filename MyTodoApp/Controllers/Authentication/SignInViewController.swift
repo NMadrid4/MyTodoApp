@@ -30,27 +30,23 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         signupButton.layer.cornerRadius = 4.0
         seePassword.isHidden = true
         
-        backgroundView.backgroundColor = UIColor(red: 255/255.0, green: 204/255.0, blue: 98/255.0, alpha: 1.0)
+        let layerBackground = CAGradientLayer()
+        layerBackground.frame = CGRect(x: 0, y: 0, width: backgroundView.bounds.width, height: backgroundView.bounds.height)
+        layerBackground.colors = [UIColor(red: 255/255.0, green: 204/255.0, blue: 98/255.0, alpha: 1.0).cgColor, UIColor(red: 255/255.0, green: 83/255.0, blue: 26/255.0, alpha: 0.9).cgColor]
+        backgroundView.layer.insertSublayer(layerBackground, at: 0)
+        
         let layer = CAGradientLayer()
-        layer.frame = CGRect(x: 0, y: 0, width: 375, height: 667)
+        layer.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
         layer.colors = [UIColor(red: 255/255.0, green: 204/255.0, blue: 98/255.0, alpha: 1.0).cgColor, UIColor(red: 255/255.0, green: 83/255.0, blue: 26/255.0, alpha: 0.9).cgColor]
         frontView.layer.insertSublayer(layer, at: 0)
         
         usernameTexField.putLayer(textField: usernameTexField)
-        usernameTexField.layer.masksToBounds = true
-        usernameTexField.backgroundColor = UIColor.clear
-        usernameTexField.attributedPlaceholder = NSAttributedString(string: "example@example.com",
-                                                                    attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
-        
+        usernameTexField.customTextField(textField: usernameTexField, placeholderText: "example@example.com")
         
         passwordTexField.putLayer(textField: passwordTexField)
-        passwordTexField.layer.masksToBounds = true
-        passwordTexField.backgroundColor = UIColor.clear
-        passwordTexField.attributedPlaceholder = NSAttributedString(string: "password",
-                                                                    attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
-        
+        passwordTexField.customTextField(textField: passwordTexField, placeholderText: "password")
         passwordTexField.addTarget(self, action: #selector(validateTextfield), for: UIControlEvents.editingChanged)
-        
+
     }
     
     @objc func validateTextfield(textField: UITextField) {
@@ -62,11 +58,12 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
             seePassword.setImage(#imageLiteral(resourceName: "ic_seePasword"), for: .normal)
         }
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
-        
     }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.navigationController?.navigationBar.isHidden = false
