@@ -13,18 +13,21 @@ class TodoViewController: UIViewController, CountTasksProtocol {
     @IBOutlet weak var taskDoneLabel: UILabel!
     @IBOutlet weak var allTaskLabel: UILabel!
     @IBOutlet weak var addNewTodoButton: UIButton!
+    @IBOutlet weak var todoProgressView: UIProgressView!
     
     var todos: [Todo] = []
     var tasks: [Task] = []
     var isDoneCount: Int = Int()
     var userToken: String?
     var idUser: Int?
+    var current: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         todosCollectionView.register(UINib(nibName: "CollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "celda")
         userToken = UserData.sharedInstance.userToken!
         idUser = UserData.sharedInstance.idUser!
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -39,6 +42,7 @@ class TodoViewController: UIViewController, CountTasksProtocol {
         self.navigationController?.navigationBar.isHidden = true
         getTasks()
         getData()
+        
     }
     
     func getTasks() {
@@ -57,6 +61,15 @@ class TodoViewController: UIViewController, CountTasksProtocol {
                 }
                 self.taskDoneLabel.text = String(self.isDoneCount)
                 self.allTaskLabel.text =  String(self.tasks.count)
+                
+                let i = self.isDoneCount
+                let max = self.tasks.count
+                
+                if i <= max {
+                    let ratio = Float(i) / Float(max)
+                    self.todoProgressView.progress = Float(ratio)
+                    
+                }
             }
         }
     }

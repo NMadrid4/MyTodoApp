@@ -33,7 +33,7 @@
                                     <outlet property="delegate" destination="x8W-zA-Wai" id="QMk-rx-rmP"/>
                                 </connections>
                             </collectionView>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.20000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="4KZ-fk-y1U">
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4KZ-fk-y1U">
                                 <rect key="frame" x="30" y="134" width="303" height="2"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="progressTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -87,6 +87,7 @@
                         <outlet property="addNewTodoButton" destination="EBe-aI-7OB" id="0PU-Hv-DnM"/>
                         <outlet property="allTaskLabel" destination="VDC-6Q-GEG" id="4XB-5W-S1Y"/>
                         <outlet property="taskDoneLabel" destination="1zb-Bh-WEI" id="jlp-h9-nSe"/>
+                        <outlet property="todoProgressView" destination="4KZ-fk-y1U" id="Xbz-ek-FFp"/>
                         <outlet property="todosCollectionView" destination="phr-Z3-GfH" id="g7Y-MH-sto"/>
                     </connections>
                 </viewController>
