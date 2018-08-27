@@ -62,13 +62,12 @@ class TodoViewController: UIViewController, CountTasksProtocol {
                 self.taskDoneLabel.text = String(self.isDoneCount)
                 self.allTaskLabel.text =  String(self.tasks.count)
                 
-                let i = self.isDoneCount
-                let max = self.tasks.count
+                let taskDone = self.isDoneCount
+                let maxTask = self.tasks.count
                 
-                if i <= max {
-                    let ratio = Float(i) / Float(max)
+                if taskDone <= maxTask {
+                    let ratio = Float(taskDone) / Float(maxTask)
                     self.todoProgressView.progress = Float(ratio)
-                    
                 }
             }
         }

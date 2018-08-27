@@ -1,4 +1,4 @@
-
+.DS_Store
 # Created by https://www.gitignore.io/api/xcode
 
 ### Xcode ###
@@ -32,6 +32,7 @@ DerivedData/
 !*.xcodeproj/xcshareddata/
 !*.xcworkspace/contents.xcworkspacedata
 /*.gcno
+
 
 
 # End of https://www.gitignore.io/api/xcode
