@@ -88,13 +88,13 @@ class SignUpViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //self.titleLabel.center.y -= self.backgroundView.bounds.height
+//        self.titleLabel.center.y -= self.backgroundView.bounds.height
         //print(self.usernameTextField.bounds)
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         UIView.animate(withDuration: 0.3) {
-            //self.titleLabel.center.y += self.backgroundView.bounds.height
+//            self.titleLabel.center.y += self.backgroundView.bounds.height
             self.titleLabel.alpha += 1.0
         }
     }

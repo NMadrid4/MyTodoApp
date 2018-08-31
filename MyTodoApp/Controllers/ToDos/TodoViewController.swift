@@ -27,7 +27,6 @@ class TodoViewController: UIViewController, CountTasksProtocol {
         todosCollectionView.register(UINib(nibName: "CollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "celda")
         userToken = UserData.sharedInstance.userToken!
         idUser = UserData.sharedInstance.idUser!
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -35,6 +34,7 @@ class TodoViewController: UIViewController, CountTasksProtocol {
         self.navigationController?.navigationBar.isHidden = false
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem?.tintColor = UIColor.white
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -91,17 +91,19 @@ class TodoViewController: UIViewController, CountTasksProtocol {
     }
     
     //protocol
-    func tasksToDone() {
+    func tasksToDone(value: Int, todoId: Int) {
         if isDoneCount <= tasks.count-1 {
             isDoneCount+=1
             self.taskDoneLabel.text = String(self.isDoneCount)
+            self.todos[todoId-1].task[value]["isDone"] = true
         }else{
             return
         }
     }
     
-    func decrease() {
+    func decrease(value: Int, todoId: Int) {
         isDoneCount-=1
+        self.todos[todoId-1].task[value]["isDone"] = false
         self.taskDoneLabel.text = String(self.isDoneCount)
     }
     
@@ -113,6 +115,7 @@ class TodoViewController: UIViewController, CountTasksProtocol {
             self.navigationController?.pushViewController(todoDetailVC, animated: true)  
         }
     }
+    
 }
 
 extension TodoViewController: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -124,6 +127,7 @@ extension TodoViewController: UICollectionViewDataSource, UICollectionViewDelega
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "celda", for: indexPath) as! CollectionViewCell
         cell.todoTitleLabel.text = todos[indexPath.row].title
         cell.getTask(task: todos[indexPath.row].task)
+        cell.todo = todos[indexPath.row]
         cell.delegate = self
         return cell
     }
